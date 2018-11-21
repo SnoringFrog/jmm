@@ -1,0 +1,20 @@
+Figure out requirements (ImageMagick, ???)
+
+Default command should check image size and...
+	pick largest font size that fits on one line
+	split top/bottom caption across multiple lines at requested font size
+
+Take arguments
+	input image
+	output image
+	list of input images
+	font size
+	text
+	position
+	font
+	stroke size
+	font color
+	
+Handle the issues with output
+	mirror /input dir stucture
+	deal with overwriting better

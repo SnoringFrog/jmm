@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+function process {
+	#counter=$((counter+1))
+	#output_name="output-$counter.jpg"
+
+	#TODO; Support cloning input dir's structure; also deal with overwriting output
+	output_name="$(basename "${1%.*}")-output.jpg"
+
+	convert "$1" -font Impact -fill white -pointsize 45 -stroke black -strokewidth 2 -gravity north -annotate +0+0 'I CAN LOOK INTO YOUR EYES' -gravity south -annotate +0+0 'AND TELL THAT YOU ARE LYING' "output/$output_name"
+
+}
+
+if [ -z "$@" ]; then
+	#Verify input/output directories exist
+	if [ ! -d "input" ]; then
+		>&2 echo "Error: No 'input' directory"
+		exit 1
+	fi
+	mkdir -p output
+
+	for img in input/*; do
+		echo $img
+		process "$img"
+	done
+else
+	for img in "$@"; do
+		process "$img"
+	done
+fi
